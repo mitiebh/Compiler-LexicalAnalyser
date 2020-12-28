@@ -153,7 +153,7 @@ int main()
                 }
             }
             if(isoperator(string(1,line[lineindex]))) // searching for operator
-            {
+            { 
                 int opindex = lineindex;
                 opword = line[lineindex];
                 opindex++;
