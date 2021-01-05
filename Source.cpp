@@ -1,9 +1,10 @@
+// Copyrights, written by mitiebh.
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
 
-char delimeters[10] = {'{','}','(',')',';','-','.','[',']'};
+char delimiters[10] = {'{','}','(',')',';','-','.','[',']'};
 string operatorarr[30];
 
 ifstream sourcefile("Target.cpp");
@@ -36,11 +37,11 @@ void writetoOutput()
     outputfile << "\tCol----- " << token.colNo << endl;
     outputfile << "\tBlock--- " << token.blockNo << endl << endl;
 }
-bool isdelimeter(char letter) // searching in delimeters array
+bool isdelimiter(char letter) // searching in delimeters array
 {
     for (int i = 0; i < 10; i++)
     {
-        if (delimeters[i] == letter)
+        if (delimiters[i] == letter)
             return true;
     }
     return false;
@@ -89,14 +90,14 @@ int main()
                 lineindex++;
                 continue;
             }
-            if (isdelimeter(line[lineindex])) // searching for delimeter in it's function
+            if (isdelimiter(line[lineindex])) // searching for delimeter in it's function
             {
                 if(line[lineindex] == '{')
                     token.blockNo++;
                 if(line[lineindex] == '}')
                     token.blockNo--;
                 tokenname = line[lineindex];
-                initToken(tokenname,"delimeter",index_s,lineindex,token.blockNo);
+                initToken(tokenname,"delimiter",index_s,lineindex,token.blockNo);
                 writetoOutput();
                 lineindex++;
                 continue;
@@ -257,7 +258,7 @@ int main()
                     continue;
                 }
             }
-            if(isalpha(line[lineindex]) || line[lineindex] == '#') // recognize keyword or identifier word
+            if(isalpha(line[lineindex]) || line[lineindex] == '#' || line[lineindex] == '_') // recognize keyword or identifier word
             {
                 bool foundkeyword = false;
                 int wordindex = lineindex;
