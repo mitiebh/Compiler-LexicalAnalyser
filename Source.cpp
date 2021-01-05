@@ -258,7 +258,7 @@ int main()
                     continue;
                 }
             }
-            if(isalpha(line[lineindex]) || line[lineindex] == '#') // recognize keyword or identifier word
+            if(isalpha(line[lineindex]) || line[lineindex] == '#' || line[lineindex] == '_') // recognize keyword or identifier word
             {
                 bool foundkeyword = false;
                 int wordindex = lineindex;
