@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-char delimiters[10] = {'{','}','(',')',';','-','.','[',']'};
+char delimiters[10] = {'{','}','(',')',';','.','[',']'};
 string operatorarr[30];
 
 ifstream sourcefile("Target.cpp");
@@ -75,7 +75,7 @@ int main()
         getline(sourcefile,line);
         sourcearr[i].append(line);
     }
-    
+
     int index_s = 0;
     int sourcearrLength = sizeof(sourcearr)/sizeof(sourcearr[0]);
     while(index_s < sourcearrLength)
@@ -101,7 +101,7 @@ int main()
                 writetoOutput();
                 lineindex++;
                 continue;
-            } 
+            }
             if (line[lineindex] == '/')
             {
                 int commentindexcol = lineindex;
@@ -154,7 +154,7 @@ int main()
                 }
             }
             if(isoperator(string(1,line[lineindex]))) // searching for operator
-            { 
+            {
                 int opindex = lineindex;
                 opword = line[lineindex];
                 opindex++;
@@ -176,8 +176,8 @@ int main()
                     writetoOutput();
                     lineindex++;
                     continue;
-                }  
-            }   
+                }
+            }
             if(isdigit(line[lineindex])) // recognize constant int or float numbers
             {
                 string number = "";
@@ -223,7 +223,7 @@ int main()
                     writetoOutput();
                     lineindex += (numberindex - lineindex);
                     continue;
-                } 
+                }
             }
             if (line[lineindex] == '"' || string(1,line[lineindex]) == "'") // string and char constant
             {
@@ -293,7 +293,7 @@ int main()
                     writetoOutput();
                     lineindex += (wordindex - lineindex);
                     continue;
-                } 
+                }
             }
             lineindex++;
         }
