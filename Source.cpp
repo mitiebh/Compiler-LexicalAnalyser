@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-char delimiters[10] = {'{','}','(',')',';','-','.','[',']'};
+char delimiters[10] = {'{','}','(',')',';','.','[',']'};
 string operatorarr[30];
 
 ifstream sourcefile("Target.cpp");
