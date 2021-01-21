@@ -75,7 +75,7 @@ int main()
         getline(sourcefile,line);
         sourcearr[i].append(line);
     }
-    
+
     int index_s = 0;
     int sourcearrLength = sizeof(sourcearr)/sizeof(sourcearr[0]);
     while(index_s < sourcearrLength)
@@ -90,18 +90,6 @@ int main()
                 lineindex++;
                 continue;
             }
-            if (isdelimiter(line[lineindex])) // searching for delimeter in it's function
-            {
-                if(line[lineindex] == '{')
-                    token.blockNo++;
-                if(line[lineindex] == '}')
-                    token.blockNo--;
-                tokenname = line[lineindex];
-                initToken(tokenname,"delimiter",index_s,lineindex,token.blockNo);
-                writetoOutput();
-                lineindex++;
-                continue;
-            } 
             if (line[lineindex] == '/')
             {
                 int commentindexcol = lineindex;
@@ -154,7 +142,7 @@ int main()
                 }
             }
             if(isoperator(string(1,line[lineindex]))) // searching for operator
-            { 
+            {
                 int opindex = lineindex;
                 opword = line[lineindex];
                 opindex++;
@@ -176,9 +164,9 @@ int main()
                     writetoOutput();
                     lineindex++;
                     continue;
-                }  
-            }   
-            if(isdigit(line[lineindex])) // recognize constant int or float numbers
+                }
+            }
+            if(isdigit(line[lineindex]) || (line[lineindex] == '.' && isdigit(line[lineindex + 1]))) // recognize constant int or float numbers
             {
                 string number = "";
                 int numberindex = lineindex;
@@ -223,7 +211,19 @@ int main()
                     writetoOutput();
                     lineindex += (numberindex - lineindex);
                     continue;
-                } 
+                }
+            }
+            if (isdelimiter(line[lineindex])) // searching for delimeter in it's function
+            {
+                if(line[lineindex] == '{')
+                    token.blockNo++;
+                if(line[lineindex] == '}')
+                    token.blockNo--;
+                tokenname = line[lineindex];
+                initToken(tokenname,"delimiter",index_s,lineindex,token.blockNo);
+                writetoOutput();
+                lineindex++;
+                continue;
             }
             if (line[lineindex] == '"' || string(1,line[lineindex]) == "'") // string and char constant
             {
@@ -293,7 +293,7 @@ int main()
                     writetoOutput();
                     lineindex += (wordindex - lineindex);
                     continue;
-                } 
+                }
             }
             lineindex++;
         }
