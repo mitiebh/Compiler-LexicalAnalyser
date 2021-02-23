@@ -6,7 +6,5 @@ Lexical analysis, lexing or tokenization is the process of converting a sequence
  
 #### How to use ?
 You can first run the source.exe file or compile the Source.cpp file by yourself,
-then check the Outputfile.txt to see the result.</br>
+then check the Outputfile.txt to see the result.<br>
 ▶ Notice: This program only goes to detect and find the valid tokens, it has no detection/correction ERROR.
-
-Thanks for watching ^-^
